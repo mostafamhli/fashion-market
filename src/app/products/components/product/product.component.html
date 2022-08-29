@@ -1,0 +1,59 @@
+<div class="item transition">
+  <div class="flex justify-center">
+    <img class="image" src="{{ data.image }}" alt="" />
+  </div>
+
+  <div class="p-5 flex flex-col gap-3">
+    <!--badge-->
+    <div class="flex items-center gap-2">
+      <span class="badge">{{ data.category }}</span>
+    </div>
+
+    <!--product title-->
+    <h2 class="product-title">
+      {{ data.title }}
+    </h2>
+
+    <!--product price-->
+    <div>
+      <span class="text-xl font-bold">
+        ${{ data.price | number: "3.1-2" }}
+      </span>
+      <div class="flex items-center gap-2 mt-1">
+        <span class="text-xs line-through text-gray-700 opacity-75">
+          ${{ data.price + 20 | number: "3.1-2" }}
+        </span>
+        <span class="discount-present"> save 20% </span>
+      </div>
+    </div>
+    <!--Product action button-->
+    <div class="flex items-center space-x-6 pt-9">
+      <button
+        class="py-4 px-10 text-xs font-bold text-white uppercase bg-rose-700 rounded-lg hover:bg-rose-600"
+        *ngIf="!addButton"
+        (click)="addButton = true"
+      >
+        Add To Card
+      </button>
+      <div
+        class="flex justify-between items-center border rounded-md border-gray-900/3 h-12"
+        *ngIf="addButton"
+      >
+        <button class="p-4">
+          <i
+            class="bx bxs-cart-add text-4xl"
+            (click)="add(); addButton = false"
+          ></i>
+        </button>
+        <input
+          type="text"
+          class="w-24 text-center outline-none"
+          [(ngModel)]="amount"
+        />
+      </div>
+      <button class="button-icon" routerLink="/details/{{ data.id }}">
+        <img src="assets/imgs/eye.svg" alt="" class="opacity-50 h-5 w-5" />
+      </button>
+    </div>
+  </div>
+</div>

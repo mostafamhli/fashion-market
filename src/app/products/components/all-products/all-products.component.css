@@ -1,0 +1,13 @@
+.box {
+  position: relative;
+}
+
+
+
+.spinner-container {
+  height: calc(100vh - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}

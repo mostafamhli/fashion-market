@@ -1,1 +1,59 @@
+
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffe4e6; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #be123c; 
+  border-radius: 5px;
+  
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #9f1239; 
+}
+
+.navbar-menu.show,
+.search-popup.show{
+  @apply  opacity-100 visible;
+}
+
+@layer components {
+  .item {
+    @apply  bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden
+
+  }
+  .badge{
+    @apply px-3 py-1 rounded-full text-xs bg-rose-100 inline-block
+  }
+
+  .product-title{
+    @apply font-semibold capitalize text-xl overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-800
+  }
+
+  .discount-present {
+    @apply bg-rose-700 px-2.5 py-1.5 rounded-md text-xs text-white
+  }
+
+  .button-primary{
+    @apply bg-rose-700 hover:bg-rose-700/90 px-6 py-2 rounded-md text-white font-medium tracking-wider transition
+  }
+
+  .button-icon {
+    @apply w-12 h-6  flex justify-center items-center bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md
+  }
+}

@@ -15,7 +15,7 @@ const routes: Routes=[
   {path:'details/:id', component:ProductsDetailsComponent},
   {path:'cart', component:CartsComponent},
   {path:'contact', component:ContactUsComponent},
-  {path:'**',component:PageNotFoundComponent},
+  {path:'**',component:HomeComponent},
 ];
 @NgModule({
   imports:[RouterModule.forRoot(routes)],

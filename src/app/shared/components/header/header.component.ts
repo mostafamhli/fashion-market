@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { CartsService } from 'src/app/carts/services/carts.service';
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   isSearchPopup: boolean = false;
   lightThemeToggle: boolean = true;
   darkThemeToggle: boolean = false;
-  userTheme = localStorage.getItem('theme');
+  userTheme =localStorage.getItem('theme');
   systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
   cartNotEmpty: any =false
 
@@ -64,13 +65,16 @@ export class HeaderComponent implements OnInit {
   lightIconClicked(){
     this.lightThemeToggle =! this.lightThemeToggle;
     this.darkThemeToggle =! this.darkThemeToggle;
-    this.themeSwitch()
+    this.userTheme='dark';
+    this.themeSwitch();
+    
   }
 
   darkIconClicked(){
     this.lightThemeToggle =! this.lightThemeToggle;
     this.darkThemeToggle =! this.darkThemeToggle;
-    this.themeSwitch()
+    this.userTheme='light';
+    this.themeSwitch();
   }
   navToggle() {
     this.isToggle = !this.isToggle;

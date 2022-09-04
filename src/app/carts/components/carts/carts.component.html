@@ -4,11 +4,11 @@
 >
   <div
     id="toast-danger"
-    class="flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+    class="flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-gray-800 rounded-lg shadow dark:text-pink-800 dark:bg-gray-200"
     role="alert"
   >
     <div
-      class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-rose-500 bg-red-100 rounded-lg dark:bg-rose-800 dark:text-red-200"
+      class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-gray-100 bg-rose-800 rounded-lg dark:bg-pink-800 dark:text-pink-100"
     >
       <svg
         aria-hidden="true"
@@ -25,13 +25,13 @@
       </svg>
       <span class="sr-only">Error icon</span>
     </div>
-    <div class="ml-3 text-sm font-normal">
+    <div class="ml-3 text-sm font-normal text-gray-100 dark:text-gray-800">
       There is no items in the cart yet!
     </div>
 
     <button
       type="button"
-      class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+      class="ml-auto -mx-1.5 -my-1.5 bg-gray-800 text-gray-400 hover:text-gray-100 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-700 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-pink-800 dark:bg-gray-200 dark:hover:bg-gray-300"
       data-dismiss-target="#toast-danger"
       aria-label="Close"
       (click)="backToProductsPage()"
@@ -54,184 +54,10 @@
   </div>
 </div>
 
-<div class="container mx-auto" *ngIf="cartProducts.length > 0">
-  <h1 class="text-center text-4xl text-rose-700 p-4 mt-8 mb-2">
-    Shopping Cart
-  </h1>
-
-  <div class="flex flex-col md:flex-row my-1 p-8 justify-between items-center">
-    <div class="text-gray-800">
-      You have
-      <label class="text-2xl text-rose-700">{{ cartProducts.length }}</label>
-      {{ cartProducts.length > 1 ? "items" : "item" }} in your cart
-    </div>
-    <div
-      class="md:text-xs lg:text-xl p-2 m-2 cursor-pointer rounded-lg bg-rose-600 hover:bg-rose-700 text-white hover:shadow-xl"
-      (click)="clearCart()"
-    >
-      Clear Shopping Cart
-    </div>
-  </div>
-  <div class="overflow-auto rounded-lg shadow hidden md:block">
-    <table class="table w-full">
-      <thead class="bg-rose-100 border-b-2 border-rose-200">
-        <tr>
-          <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">
-            Image
-          </th>
-          <th class="p-3 text-sm font-semibold tracking-wide text-left">
-            Name
-          </th>
-          <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">
-            Price
-          </th>
-          <th class=" p-3 text-sm font-semibold tracking-wide text-center">
-            Quantity
-          </th>
-          <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">
-            Total
-          </th>
-          <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">
-            #
-          </th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-100">
-        <tr *ngFor="let item of cartProducts; let index = index">
-          <td
-            class="p-3 text-sm text-gray-700 whitespace-nowrap"
-            data-label="Image"
-          >
-            <img src="{{ item.item.image }}" alt="" />
-          </td>
-          <td
-            class="p-3 text-sm text-gray-700 whitespace-nowrap"
-            data-label="Name"
-          >
-            {{ item.item.title }}
-          </td>
-          <td
-            class="p-3 text-sm text-gray-700 whitespace-nowrap"
-            data-label="Price"
-          >
-            {{ item.item.price | number }} $
-          </td>
-          <td
-            class="p-3 text-sm text-gray-700 whitespace-nowrap"
-            data-label="Quantity"
-          >
-            <div class="flex items-center justify-center">
-              <button class="p-4">
-                <i class="bx bx-minus" (click)="minsAmount(index)"></i>
-              </button>
-              <input
-                type="text"
-                class="w-16 h-full text-center outline-none"
-                name="amount"
-                id="amount"
-                #amount="ngModel"
-                (change)="detectChange($event, index)"
-                [(ngModel)]="item.quantity"
-                pattern="[1-9]+"
-                placeholder="1"
-              />
-              <button class="p-4">
-                <i class="bx bx-plus" (click)="addAmount(index)"></i>
-              </button>
-            </div>
-          </td>
-          <td
-            class="p-3 text-sm text-gray-700 whitespace-nowrap"
-            data-label="total"
-          >
-            {{ item.item.price * item.quantity | number }} $
-          </td>
-          <td class="p-3 text-sm text-gray-700 whitespace-nowrap" data-label="">
-            <a
-              class="bg-rose-700 hover:bg-rose-800 w-full cursor-pointer text-white text-sm rounded-md mt-4 px-4 py-2 text-right"
-              (click)="delete(index)"
-              >Delete</a
-            >
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th colspan="2" class="text-right">Total: {{ total | number }} $</th>
-          <th>
-            <a
-              class="inline-block bg-rose-700 hover:bg-rose-800 w-full cursor-pointer text-white text-xs rounded-md mb-1 px-4 py-2 text-left"
-              (click)="order()"
-              >Order Now</a
-            >
-          </th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-  <div class="md:hidden">
-    <div *ngFor="let item of cartProducts; let index = index">
-      <div class="grid grid-cols-1 gap-4 space-y-3">
-        <div class="bg-white p-4 rounded-lg shadow">
-          <div class="flex items-center space-x-4 text-sm">
-            <div class="w-[25%] flex justify-center items-center">
-              <img class="small-img" src="{{ item.item.image }}" alt="" />
-            </div>
-            <div class="flex-col w-[70%]">
-              <div class="text-semibold text-gray-700 p-4 mb-1">
-                {{ item.item.title }}
-              </div>
-              <div class="flex flex-row justify-center items-center">
-                <div class="text-gray-500">{{ item.item.price | number }}$</div>
-                <div
-                  class="flex flex-row items-center border mx-2 rounded-sm border-gray-900/3"
-                >
-                  <button class="p-4">
-                    <i class="bx bx-minus" (click)="minsAmount(index)"></i>
-                  </button>
-                  <input
-                    type="text"
-                    class="w-8 h-full text-center outline-none"
-                    name="amount"
-                    id="amount"
-                    #amount="ngModel"
-                    (change)="detectChange($event, index)"
-                    [(ngModel)]="item.quantity"
-                    pattern="[1-9]+"
-                    placeholder="1"
-                  />
-                  <button class="p-4">
-                    <i class="bx bx-plus" (click)="addAmount(index)"></i>
-                  </button>
-                </div>
-                <div class="text-gray-500 flex justify-end items-end">
-                  {{ item.item.price * item.quantity | number }} $
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex justify-between items-center mt-4">
-      <div class="semibold text-xl">Total: {{ total | number }}$</div>
-      <div>
-        <a
-          class="inline-block bg-rose-700 hover:bg-rose-800 w-full cursor-pointer text-white text-xs rounded-md mb-1 px-4 py-2 text-left"
-          (click)="order()"
-          >Order Now</a
-        >
-      </div>
-    </div>
-  </div>
-</div>
-<div *ngIf="success">
+<div *ngIf="success" class="flex justify-center items-center">
   <div
     id="toast-success"
-    class="flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+    class="flex items-center justify-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
     [ngClass]="toastClose ? 'hidden' : ''"
     role="alert"
   >
@@ -278,3 +104,180 @@
     </button>
   </div>
 </div>
+
+<div class="container mx-auto " *ngIf="cartProducts.length > 0">
+  <h1 class="text-center text-4xl text-rose-700 dark:text-pink-100 p-4 mt-8 mb-2">
+    Shopping Cart
+  </h1>
+
+  <div class="flex flex-col md:flex-row my-1 p-8 justify-between items-center">
+    <div class="text-gray-800 dark:text-pink-100">
+      You have
+      <label class="text-2xl text-rose-700 dark:text-pink-700">{{ cartProducts.length }}</label>
+      {{ cartProducts.length > 1 ? "items" : "item" }} in your cart
+    </div>
+    <div
+      class="md:text-xs lg:text-xl p-2 m-2 cursor-pointer rounded-lg bg-rose-600 hover:bg-rose-700 dark:bg-pink-700 hover:dark:bg-pink-800 text-white dark:text-pink-100 hover:shadow-xl"
+      (click)="clearCart()"
+    >
+      Clear Shopping Cart
+    </div>
+  </div>
+  <div class="overflow-auto rounded-lg shadow hidden md:block">
+    <table class="table w-full">
+      <thead class="bg-rose-100 dark:bg-pink-100 border-b-2 border-rose-200 dark:border-pink-200">
+        <tr>
+          <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left dark:text-pink-800">
+            Image
+          </th>
+          <th class="p-3 text-sm font-semibold tracking-wide text-left dark:text-pink-800">
+            Name
+          </th>
+          <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left dark:text-pink-800">
+            Price
+          </th>
+          <th class=" p-3 text-sm font-semibold tracking-wide text-center dark:text-pink-800">
+            Quantity
+          </th>
+          <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left dark:text-pink-800">
+            Total
+          </th>
+          <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left dark:text-pink-800">
+            #
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <tr *ngFor="let item of cartProducts; let index = index">
+          <td
+            class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
+            data-label="Image"
+          >
+            <img src="{{ item.item.image }}" alt="" />
+          </td>
+          <td
+            class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
+            data-label="Name"
+          >
+            {{ item.item.title }}
+          </td>
+          <td
+            class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
+            data-label="Price"
+          >
+            {{ item.item.price | number }} $
+          </td>
+          <td
+            class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
+            data-label="Quantity"
+          >
+            <div class="flex items-center justify-center">
+              <button class="p-4">
+                <i class="bx bx-minus" (click)="minsAmount(index)"></i>
+              </button>
+              <input
+                type="text"
+                class="w-16 h-full text-center outline-none dark:bg-gray-800"
+                name="amount"
+                id="amount"
+                #amount="ngModel"
+                (change)="detectChange($event, index)"
+                [(ngModel)]="item.quantity"
+                pattern="[1-9]+"
+                placeholder="1"
+              />
+              <button class="p-4">
+                <i class="bx bx-plus" (click)="addAmount(index)"></i>
+              </button>
+            </div>
+          </td>
+          <td
+            class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
+            data-label="total"
+          >
+            {{ item.item.price * item.quantity | number }} $
+          </td>
+          <td class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap" data-label="">
+            <a
+              class="bg-rose-700 hover:bg-rose-800 dark:bg-pink-700 hover:dark:bg-pink-800 w-full cursor-pointer text-white dark:text-pink-100 text-sm rounded-md mt-4 px-4 py-2 text-right"
+              (click)="delete(index)"
+              >Delete</a
+            >
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th colspan="2" class="text-right dark:text-pink-100">Total: {{ total | number }} $</th>
+          <th>
+            <a
+              class="inline-block bg-rose-700 hover:bg-rose-800 dark:bg-pink-700 hover:dark:bg-pink-800 w-full cursor-pointer text-white dark:text-pink-100 text-xs rounded-md mb-1 px-4 py-2 text-left"
+              (click)="order()"
+              >Order Now</a
+            >
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="md:hidden">
+    <div *ngFor="let item of cartProducts; let index = index">
+      <div class="grid grid-cols-1 gap-4 space-y-3">
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+          <div class="flex items-center space-x-4 text-sm">
+            <div class="w-[25%] flex justify-center items-center">
+              <img class="small-img" src="{{ item.item.image }}" alt="" />
+            </div>
+            <div class="flex-col w-[70%]">
+              <div class="text-semibold text-gray-700 dark:text-pink-100  p-4 mb-1">
+                {{ item.item.title }}
+              </div>
+              <div class="flex flex-row justify-center items-center">
+                <div class="text-gray-500 dark:text-pink-100">{{ item.item.price | number }}$</div>
+                <div
+                  class="flex flex-row items-center border dark:border-none mx-2 rounded-sm border-gray-900/3"
+                >
+                  <button class="p-4">
+                    <i class="bx bx-minus dark:text-pink-100 " (click)="minsAmount(index)"></i>
+                  </button>
+                  <input
+                    type="text"
+                    class="w-8 h-full text-center outline-none dark:bg-gray-800 dark:text-pink-100"
+                    name="amount"
+                    id="amount"
+                    #amount="ngModel"
+                    (change)="detectChange($event, index)"
+                    [(ngModel)]="item.quantity"
+                    pattern="[1-9]+"
+                    placeholder="1"
+                  />
+                  <button class="p-4">
+                    <i class="bx bx-plus dark:text-pink-100" (click)="addAmount(index)"></i>
+                  </button>
+                </div>
+                <div class="text-gray-500 dark:text-pink-100 flex justify-end items-end">
+                  {{ item.item.price * item.quantity | number }} $
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between items-center mt-4">
+      <div class="semibold text-xl dark:text-pink-100">Total: {{ total | number }}$</div>
+      <div>
+        <a
+          class="inline-block bg-rose-700 hover:bg-rose-800  dark:bg-pink-700 hover:dark:bg-pink-800 w-full cursor-pointer text-white dark:text-pink-100 text-xs rounded-md mb-1 px-4 py-2 text-left"
+          (click)="order()"
+          >Order Now</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+

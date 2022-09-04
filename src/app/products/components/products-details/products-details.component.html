@@ -4,11 +4,11 @@
 
 <main class="relative pt-6 pb-10 p-10 md:pl-20" *ngIf="!loader">
   <div
-    class="absolute w-[100%] h-[30%] -z-10 bg-gradient-to-b from-transparent to-red-300 bottom-0 left-0"
+    class="absolute w-[100%] h-[30%] -z-10 bg-gradient-to-b from-transparent to-pink-300 dark:to-pink-600 bottom-0 left-0"
   ></div>
   <button>
     <i
-      class="bx bx-left-arrow-alt animate-ping text-xl"
+      class="bx bx-left-arrow-alt animate-ping text-xl dark:text-pink-100"
       routerLink="/products"
     ></i>
   </button>
@@ -16,18 +16,18 @@
     <div class="grid grid-cols-1 p-1 md:p-4 order-2 md:order-1">
       <div class="xs:max-w-xs sm:max-w-sm md:max-w-md lg-max-w-lg xl:max-w-xl">
         <div class="hidden md:flex items-center text-sm pt-2">
-          <span class="text-gray-900/40">{{ product.category }}&nbsp;</span>
-          <span>/ {{ product.title }}</span>
+          <span class="text-gray-900/40 dark:text-pink-100">{{ product.category }}&nbsp;</span>
+          <span class="dark:text-pink-200">/ {{ product.title }}</span>
         </div>
         <div class="pt-10 pb-4">
           <h1
-            class="text-xl md:text-4xl text-gray-800 text-lora font-semibold tracking-tighter"
+            class="text-xl md:text-4xl text-gray-800 dark:text-pink-200 text-lora font-semibold tracking-tighter"
           >
             {{ product.title }}
           </h1>
         </div>
         <div class="flex justify-between items-center pt-3">
-          <span class="text-xl">${{ product.price }}</span>
+          <span class="text-xl dark:text-pink-200">${{ product.price }}</span>
           <div class="flex items-center">
             <div class="flex space-x-px">
               <img src="assets/imgs/star.svg" *ngFor="let number of stars" />
@@ -36,40 +36,40 @@
                 *ngFor="let number of emptyStars"
               />
             </div>
-            <div class="pl-2 leading-none">
+            <div class="pl-2 leading-none dark:text-pink-200">
               {{ productRating }}.0/ 5.0
-              <span class="text-gray-900/40">({{ product.rating.count }})</span>
+              <span class="text-gray-900/40 dark:text-pink-100">({{ product.rating.count }})</span>
             </div>
           </div>
         </div>
-        <p class="leading-relaxed pt-6 text-gray-700">
+        <p class="leading-relaxed pt-6 text-gray-700 dark:text-pink-100">
           {{ product.description }}
         </p>
         <div class="flex flex-col xl:flex-row space-x-6 pt-6">
           <div class="flex items-center justify-between rounded-sm">
             <button class="p-4">
-              <i class="bx bx-minus" (click)="minsAmount()"></i>
+              <i class="bx bx-minus dark:text-pink-200" (click)="minsAmount()"></i>
             </button>
             <input
               type="text"
-              class="w-24 xl:w-48 h-full text-center bg-transparent outline-none"
+              class="w-24 xl:w-48 h-full text-center bg-transparent outline-none dark:text-pink-100"
               [(ngModel)]="amount"
               placeholder="1"
             />
             <button class="p-4">
-              <i class="bx bx-plus" (click)="addAmount()"></i>
+              <i class="bx bx-plus dark:text-pink-200" (click)="addAmount()"></i>
             </button>
           </div>
           <div class="flex justify-end mt-2">
             <button
               (click)="addToCart(product)"
-              class="py-4 px-8 md:px-14 w-fit text-sm font-bold text-white uppercase bg-red-500 rounded-full xl:rounded-md hover:bg-red-600"
+              class="py-4 px-8 md:px-14 w-fit text-sm font-bold text-white uppercase bg-red-500 dark:bg-pink-700 rounded-full xl:rounded-md hover:bg-red-600 hover:dark:bg-pink-600"
             >
               Add to cart
             </button>
           </div>
         </div>
-        <div class="pt-4 text-sm">
+        <div class="pt-4 text-sm dark:text-pink-100">
           Free 2-5 day shipping • Tool-free assemply • 30-day trial
         </div>
         <div class="flex justify-start items-center pt-4 space-x-6">

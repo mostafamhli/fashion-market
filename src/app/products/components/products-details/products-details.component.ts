@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartsService } from 'src/app/carts/services/carts.service';
 import { productData } from '../../product.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -17,11 +18,12 @@ export class ProductsDetailsComponent implements OnInit {
   addButton: boolean = false;
   stars:number[]=[]
   emptyStars:number[]=[]
-  amount: number = 0;
+  amount: number = 1;
   cartProducts: any[] = [];
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private cartService: CartsService
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
@@ -67,6 +69,6 @@ export class ProductsDetailsComponent implements OnInit {
       this.cartProducts.push({item: event, quantity: this.amount});
       localStorage.setItem('cart', JSON.stringify(this.cartProducts));
     }
+    this.cartService.raiseDateEmitterEvent(true)
   }
-  
 }

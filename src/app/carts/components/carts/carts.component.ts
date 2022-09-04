@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartsService } from '../../services/carts.service';
 import { Router } from '@angular/router'; ​
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Component({
   selector: 'app-carts',
   templateUrl: './carts.component.html',
@@ -17,6 +18,7 @@ export class CartsComponent implements OnInit {
   ngOnInit(): void {
     this.getCartProducts();
   }
+
 
   getCartProducts() {
     if ('cart' in localStorage) {
@@ -65,6 +67,7 @@ export class CartsComponent implements OnInit {
   clearCart() {
     this.cartProducts = [];
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    this.cartService.raiseDateEmitterEvent(false)
     this.getCartTotal();
     this.success = false;
   }
@@ -90,6 +93,7 @@ export class CartsComponent implements OnInit {
         this.success = false;
       }
     );
+    this.cartService.raiseDateEmitterEvent(false)
   }
 
   backToProductsPage(){

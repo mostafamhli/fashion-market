@@ -8,9 +8,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectComponent } from './components/select/select.component';
 import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SpinnerComponent, SelectComponent, HomeComponent],
+  declarations: [HeaderComponent, SpinnerComponent, SelectComponent, HomeComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     CommonModule,

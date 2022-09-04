@@ -1,3 +1,4 @@
+import { CartsService } from 'src/app/carts/services/carts.service';
 import { Component, OnInit } from '@angular/core';
 import { productData } from '../../product.model';
 import { ProductsService } from '../../services/products.service';
@@ -7,13 +8,14 @@ import { ProductsService } from '../../services/products.service';
   templateUrl: './all-products.component.html',
   styleUrls: ['./all-products.component.css'],
 })
+
 export class AllProductsComponent implements OnInit {
   products!: productData[];
   categories!: string[];
   loader: boolean = false;
   cartProducts: any[] = [];
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService,private cartService:CartsService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -24,7 +26,7 @@ export class AllProductsComponent implements OnInit {
     this.loader = true;
     this.productService.getAllProducts().subscribe((res: productData[]) => {
       this.products = res.filter((item) => {
-        return item.category !== 'electronics';
+        return item.category !== 'electronics'  ;
       });
       this.loader = false;
     });
@@ -69,5 +71,7 @@ export class AllProductsComponent implements OnInit {
       this.cartProducts.push(event);
       localStorage.setItem('cart', JSON.stringify(this.cartProducts));
     }
+    this.cartService.raiseDateEmitterEvent(true)
   }
+
 }

@@ -27,10 +27,16 @@
   background: #9f1239; 
 }
 
+
 .navbar-menu.show,
 .search-popup.show{
   @apply  opacity-100 visible;
 }
+
+.display-none{
+  @apply hidden;
+}
+
 
 @layer components {
   .item {
@@ -38,22 +44,22 @@
 
   }
   .badge{
-    @apply px-3 py-1 rounded-full text-xs bg-rose-100 inline-block
+    @apply px-3 py-1 rounded-full text-xs bg-rose-100 dark:bg-pink-100  inline-block
   }
 
   .product-title{
-    @apply font-semibold capitalize text-xl overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-800
+    @apply font-semibold capitalize text-xl overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-800 dark:text-pink-100
   }
 
   .discount-present {
-    @apply bg-rose-700 px-2.5 py-1.5 rounded-md text-xs text-white
+    @apply bg-rose-700 dark:bg-pink-700 px-2.5 py-1.5 rounded-md text-xs text-white
   }
 
   .button-primary{
-    @apply bg-rose-700 hover:bg-rose-700/90 px-6 py-2 rounded-md text-white font-medium tracking-wider transition
+    @apply bg-rose-700 dark:bg-pink-700 hover:bg-rose-700/90 hover:dark:bg-pink-700/90 px-6 py-2 rounded-md text-white dark:text-pink-100 font-medium tracking-wider transition
   }
 
   .button-icon {
-    @apply w-12 h-6  flex justify-center items-center bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md
+    @apply w-12 h-6  flex justify-center items-center bg-gray-300/60 dark:bg-pink-300/60 hover:bg-gray-300/80 transition rounded-md
   }
 }

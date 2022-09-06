@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartsService } from '../../services/carts.service';
-import { Router } from '@angular/router'; ​
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Component({
   selector: 'app-carts',
@@ -11,14 +11,13 @@ export class CartsComponent implements OnInit {
   cartProducts: any[] = [];
   total: number = 0;
   success: boolean = false;
-  amount:number=0;
-  toastClose:boolean=false;
+  amount: number = 0;
+  toastClose: boolean = false;
 
-  constructor(private cartService: CartsService,private route: Router) {}
+  constructor(private cartService: CartsService, private route: Router) {}
   ngOnInit(): void {
     this.getCartProducts();
   }
-
 
   getCartProducts() {
     if ('cart' in localStorage) {
@@ -28,7 +27,7 @@ export class CartsComponent implements OnInit {
   }
 
   addAmount(index: number) {
-    this.cartProducts[index].quantity = +this.cartProducts[index].quantity + 1;
+    this.cartProducts[index].quantity++;
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
     this.getCartTotal();
   }
@@ -67,7 +66,7 @@ export class CartsComponent implements OnInit {
   clearCart() {
     this.cartProducts = [];
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
-    this.cartService.raiseDateEmitterEvent(false)
+    this.cartService.raiseDateEmitterEvent(false);
     this.getCartTotal();
     this.success = false;
   }
@@ -87,25 +86,26 @@ export class CartsComponent implements OnInit {
     this.cartService.createNewCart(model).subscribe(
       (res) => {
         this.success = true;
+        localStorage.setItem('cart', JSON.stringify([]));
       },
       (error) => {
         console.log(error);
         this.success = false;
       }
     );
-    this.cartService.raiseDateEmitterEvent(false)
+    this.cartService.raiseDateEmitterEvent(false);
   }
 
-  backToProductsPage(){
-    this.route.navigate(['/products'])
+  backToProductsPage() {
+    this.route.navigate(['/products']);
   }
 
-  closeToast(){
-    this.toastClose=true
+  closeToast() {
+    this.toastClose = true;
     this.cartProducts = [];
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
     this.getCartTotal();
     this.success = false;
-    this.route.navigate(['/products'])
+    this.route.navigate(['/products']);
   }
 }

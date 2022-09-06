@@ -4,7 +4,7 @@
 
 <main class="relative pt-6 pb-10 p-10 md:pl-20" *ngIf="!loader">
   <div
-    class="absolute w-[100%] h-[30%] -z-10 bg-gradient-to-b from-transparent to-pink-300 dark:to-pink-600 bottom-0 left-0"
+    class="absolute w-[100%] h-[30%] -z-10 bg-gradient-to-b from-transparent to-pink-500 dark:to-pink-600 bottom-0 left-0"
   ></div>
   <button>
     <i
@@ -14,7 +14,7 @@
   </button>
   <div class="grid md:grid-cols-2 sm:grid-cols-1">
     <div class="grid grid-cols-1 p-1 md:p-4 order-2 md:order-1">
-      <div class="xs:max-w-xs sm:max-w-sm md:max-w-md lg-max-w-lg xl:max-w-xl">
+      <div class="sm:max-w-sm md:max-w-md xl:max-w-xl">
         <div class="hidden md:flex items-center text-sm pt-2">
           <span class="text-gray-900/40 dark:text-pink-100">{{ product.category }}&nbsp;</span>
           <span class="dark:text-pink-200">/ {{ product.title }}</span>
@@ -27,7 +27,7 @@
           </h1>
         </div>
         <div class="flex justify-between items-center pt-3">
-          <span class="text-xl dark:text-pink-200">${{ product.price }}</span>
+          <span class="text-xl dark:text-pink-200">${{ +product.price | decimalPipe: 2}}</span>
           <div class="flex items-center">
             <div class="flex space-x-px">
               <img src="assets/imgs/star.svg" *ngFor="let number of stars" />

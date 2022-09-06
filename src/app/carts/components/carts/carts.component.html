@@ -165,7 +165,7 @@
             class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
             data-label="Price"
           >
-            {{ item.item.price | number }} $
+            {{ +item.item.price | decimalPipe: 2 }} $
           </td>
           <td
             class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
@@ -195,7 +195,7 @@
             class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap"
             data-label="total"
           >
-            {{ item.item.price * item.quantity | number }} $
+            {{ item.item.price * item.quantity | decimalPipe: 2 }}$
           </td>
           <td class="p-3 text-sm text-gray-700 dark:text-pink-100 whitespace-nowrap" data-label="">
             <a
@@ -211,7 +211,7 @@
           <th></th>
           <th></th>
           <th></th>
-          <th colspan="2" class="text-right dark:text-pink-100">Total: {{ total | number }} $</th>
+          <th colspan="2" class="text-right dark:text-pink-100">Total: {{ total | decimalPipe: 2 }}$</th>
           <th>
             <a
               class="inline-block bg-rose-700 hover:bg-rose-800 dark:bg-pink-700 hover:dark:bg-pink-800 w-full cursor-pointer text-white dark:text-pink-100 text-xs rounded-md mb-1 px-4 py-2 text-left"
@@ -237,7 +237,7 @@
                 {{ item.item.title }}
               </div>
               <div class="flex flex-row justify-center items-center">
-                <div class="text-gray-500 dark:text-pink-100">{{ item.item.price | number }}$</div>
+                <div class="text-gray-500 dark:text-pink-100">{{ item.item.price | decimalPipe: 2 }}$</div>
                 <div
                   class="flex flex-row items-center border dark:border-none mx-2 rounded-sm border-gray-900/3"
                 >
@@ -260,7 +260,7 @@
                   </button>
                 </div>
                 <div class="text-gray-500 dark:text-pink-100 flex justify-end items-end">
-                  {{ item.item.price * item.quantity | number }} $
+                  {{ item.item.price * item.quantity | decimalPipe: 2 }}$
                 </div>
               </div>
             </div>
@@ -269,7 +269,7 @@
       </div>
     </div>
     <div class="flex justify-between items-center mt-4">
-      <div class="semibold text-xl dark:text-pink-100">Total: {{ total | number }}$</div>
+      <div class="semibold text-xl dark:text-pink-100">Total: {{ total | decimalPipe: 2 }}$</div>
       <div>
         <a
           class="inline-block bg-rose-700 hover:bg-rose-800  dark:bg-pink-700 hover:dark:bg-pink-800 w-full cursor-pointer text-white dark:text-pink-100 text-xs rounded-md mb-1 px-4 py-2 text-left"

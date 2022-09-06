@@ -1,12 +1,12 @@
 
   <div class="h-16 flex flex-col md:flex-row justify-center items-center gap-y-4 md:gap-x-8">
     <span
-      class="text-xl hover:text-red-700 hover:border-b-2 hover:border-red-700  dark:text-pink-100 hover:dark:text-pink-700 hover:dark:border-pink-700 hover:pb-1 transition cursor-pointer"
+      class="category"
       (click)="detectChanges($event)"
       >All</span
     >
     <span
-      class="text-xl hover:text-red-700 hover:border-b-2 hover:border-red-700 dark:text-pink-100 hover:dark:text-pink-700 hover:dark:border-pink-700 hover:scale-110 hover:pb-1 transition cursor-pointer"
+      class="category"
       *ngFor="let option of data"
       (click)="detectChanges($event)"
       >{{ option | titlecase }}</span

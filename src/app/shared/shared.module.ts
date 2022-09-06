@@ -9,9 +9,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectComponent } from './components/select/select.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { DecimalPipePipe } from '../decimal-pipe.pipe';
 
 @NgModule({
-  declarations: [HeaderComponent, SpinnerComponent, SelectComponent, HomeComponent, PageNotFoundComponent],
+  declarations: [HeaderComponent, SpinnerComponent, SelectComponent, HomeComponent, PageNotFoundComponent, DecimalPipePipe],
   imports: [
     BrowserModule,
     CommonModule,
@@ -19,6 +20,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     RouterModule,
     HttpClientModule,
   ],
-  exports: [HeaderComponent, SpinnerComponent, FormsModule, SelectComponent, HomeComponent],
+  exports: [HeaderComponent, SpinnerComponent, FormsModule, SelectComponent, HomeComponent, DecimalPipePipe],
 })
 export class SharedModule {}

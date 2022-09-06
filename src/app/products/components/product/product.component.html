@@ -17,11 +17,11 @@
     <!--product price-->
     <div>
       <span class="text-xl font-bold dark:text-pink-100">
-        ${{ data.price | number: "3.1-2" }}
+        ${{ +data.price | decimalPipe: 2 }}
       </span>
       <div class="flex items-center gap-2 mt-1">
         <span class="text-xs line-through text-gray-700 dark:text-pink-200 opacity-75">
-          ${{ data.price + 20 | number: "3.1-2" }}
+          ${{ (+data.price + 20) | decimalPipe: 2 }}
         </span>
         <span class="discount-present"> save 20% </span>
       </div>
@@ -29,7 +29,7 @@
     <!--Product action button-->
     <div class="flex items-center space-x-6 pt-9">
       <button
-        class="py-4 px-10 text-xs font-bold text-white uppercase bg-rose-700 dark:bg-pink-700 rounded-lg hover:bg-rose-600 hover:dark:bg-pink-700"
+        class="py-4 px-10 text-xs font-bold text-white uppercase rounded-lg bg-rose-700 dark:bg-pink-700 hover:bg-rose-600 hover:dark:bg-pink-700"
         *ngIf="!addButton"
         (click)="addButton = true"
       >

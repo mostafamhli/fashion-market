@@ -1,4 +1,4 @@
-<nav class="fixed w-[100%] py-4 border-b dark:border-gray-600 mx-auto bg-white dark:bg-gray-800">
+<nav class="fixed top-0 z-50 w-[100%] py-4 border-b dark:border-gray-600 bg-white dark:bg-gray-800">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-center gap-8 md:gap-12">
       <a routerLink="/home"  class="flex items-center gap-3">
@@ -13,18 +13,18 @@
       </a>
       <div
         #toggleBox
-        class="absolute md:static bg-white dark:bg-gray-800 top-full left-0 bg-rose py-4 md:py-0 border-b md:border-0 w-full opacity-0 invisible md:opacity-100 md:visible transition-all navbar-menu"
+        class="absolute top-full left-0 md:static bg-white dark:bg-gray-800 py-4 md:py-0 border-b md:border-0 w-full opacity-0 invisible md:opacity-100 md:visible transition-all navbar-menu"
         [ngClass]="isToggle ? 'show' : ''"
       >
         <div class="container z-15 mx-auto px-4 dark:bg-gray-800">
           <ul class="flex flex-col md:flex-row gap-x-8 gap-y-4">
             <li class="md:hover:scale-110 hover:text-bold" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-              <a routerLink="/home" class="hover:text-rose-700 dark:text-pink-100 hover:dark:text-pink-700 transition" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"> Home </a>
+              <a routerLink="/home" class="nav-links" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"> Home </a>
             </li>
             <li class="md:hover:scale-110  hover:text-bold" routerLinkActive="active">
               <a
                 routerLink="/products"
-                class="hover:text-rose-700 dark:text-pink-100 hover:dark:text-pink-700 transition-colors" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"
+                class="nav-links" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"
               >
                 Categories
               </a>
@@ -32,7 +32,7 @@
             <li class="md:hover:scale-110 hover:text-bold"  routerLinkActive="active">
               <a
                 routerLink="/products"
-                class="hover:text-rose-700 dark:text-pink-100 hover:dark:text-pink-700 transition-colors" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"
+                class="nav-links" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"
               >
                 Products
               </a>
@@ -40,7 +40,7 @@
             <li class="md:hover:scale-110 hover:text-bold"  routerLinkActive="active">
               <a
                 routerLink="/contact"
-                class="hover:text-rose-700 dark:text-pink-100 hover:dark:text-pink-700 transition-colors" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"
+                class="nav-links" [ngClass]="userTheme === 'dark' ? 'darkColor' : 'lightColor'"
               >
                 Contact Us
               </a>

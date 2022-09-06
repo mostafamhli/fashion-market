@@ -1,14 +1,10 @@
 .active .darkColor {
-  color: hwb(335 9% 25%);
-  font-weight: 600;
+  color:#be185d;
+  font-weight:bold;
 }
 
-.active .lightColor {
-  color: #be123c;
-  font-weight: 600;
+.active .lightColor{
+  color:#be123c;
+  font-weight:bold;
 }
 
-.fixed {
-  top: 0;
-  z-index:1000;
-}

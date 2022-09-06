@@ -18,21 +18,20 @@ export class HeaderComponent implements OnInit {
   isSearchPopup: boolean = false;
   lightThemeToggle: boolean = true;
   darkThemeToggle: boolean = false;
-  userTheme =localStorage.getItem('theme');
+  userTheme = localStorage.getItem('theme');
   systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  cartNotEmpty: any =false
+  cartNotEmpty: any = false
 
   constructor(private cartService:CartsService) {}
 
   ngOnInit(): void {
     this.themeCheck()
-
-    if ('cart' in localStorage) {
+    if (JSON.parse(localStorage.getItem('cart')!).length > 0) {
       this.cartService.raiseDateEmitterEvent(true)
     }
 
     this.cartService.dataEmitter.subscribe((value)=>{
-      this.cartNotEmpty=value
+      this.cartNotEmpty=value 
     })
   }
 
@@ -76,6 +75,7 @@ export class HeaderComponent implements OnInit {
     this.userTheme='light';
     this.themeSwitch();
   }
+  
   navToggle() {
     this.isToggle = !this.isToggle;
     if (this.isToggle === true) {

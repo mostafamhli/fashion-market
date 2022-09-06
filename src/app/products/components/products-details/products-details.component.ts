@@ -10,12 +10,10 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products-details.component.css'],
 })
 export class ProductsDetailsComponent implements OnInit {
-  @Output() item = new EventEmitter();
   id: any;
   product!: productData;
   productRating!:number
   loader: boolean = false;
-  addButton: boolean = false;
   stars:number[]=[]
   emptyStars:number[]=[]
   amount: number = 1;

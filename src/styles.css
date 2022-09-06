@@ -33,6 +33,14 @@
   @apply  opacity-100 visible;
 }
 
+.nav-links {
+  @apply hover:text-rose-700 dark:text-pink-100 hover:dark:text-pink-700 transition-colors
+}
+
+.category{
+  @apply text-xl hover:text-red-700 hover:border-b-2 hover:border-red-700  dark:text-pink-100 hover:dark:text-pink-700 hover:dark:border-pink-700 hover:scale-110 hover:pb-1 transition cursor-pointer
+}
+
 .display-none{
   @apply hidden;
 }
@@ -44,7 +52,7 @@
 
   }
   .badge{
-    @apply px-3 py-1 rounded-full text-xs bg-rose-100 dark:bg-pink-100  inline-block
+    @apply px-3 py-1 rounded-full text-xs bg-rose-100 dark:bg-pink-100 
   }
 
   .product-title{
